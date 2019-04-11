@@ -1,0 +1,35 @@
+{
+  "name": "prugala/recaptcha-bundle",
+  "description": "reCAPTCHA v3 bundle for Symfony",
+  "keywords": [
+    "recaptcha",
+    "symfony"
+  ],
+  "homepage": "https://github.com/prugala/PRRecaptchaBundle",
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Piotr Rugala",
+      "email": "piotr@isedo.pl"
+    }
+  ],
+  "require": {
+    "php": "^7.0",
+    "google/recaptcha": "^1.1",
+    "symfony/form": "^2.8 || ^3.0 || ^4.0",
+    "twig/twig": "^2.0",
+    "symfony/framework-bundle": "^2.8 || ^3.0 || ^4.0",
+    "symfony/validator": "^2.8 || ^3.0 || ^4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "PR\\Bundle\\RecaptchaBundle\\": "src"
+    }
+  },
+  "extra": {
+    "symfony": {
+      "allow-contrib": "true"
+    }
+  }
+}

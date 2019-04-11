@@ -1,0 +1,19 @@
+{% block recaptcha_label %}
+    <label>{{ label|trans|raw }}</label>
+{% endblock %}
+
+{% block recaptcha_widget %}
+    <script src="https://www.google.com/recaptcha/api.js?render={{ getRecaptchaPublicKey() }}"></script>
+
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('{{ getRecaptchaPublicKey() }}', { action: 'form' }).then(function (token) {
+                var recaptchaResponse = document.getElementById('{{ id }}');
+                recaptchaResponse.value = token;
+            });
+        });
+    </script>
+
+    {{ form_label(form) }}
+    {{ form_widget(form) }}
+{% endblock %}

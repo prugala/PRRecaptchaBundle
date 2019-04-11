@@ -1,0 +1,9 @@
+services:
+    PR\Bundle\RecaptchaBundle\Twig\RecaptchaExtension:
+        arguments:
+            $configuration: '%pr_recaptcha%'
+        tags: ['twig.extension']
+
+    PR\Bundle\RecaptchaBundle\Validator\Constraints\ContainsRecaptchaValidator:
+        arguments:
+            $configuration: '%pr_recaptcha%'
