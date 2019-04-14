@@ -1,8 +1,6 @@
 # RecaptchaBundle
 Recaptcha v3 bundle for Symfony
 
-## Work in progress ...
-
 #### Instalation
 `composer require prugala/recaptcha-bundle`
 
