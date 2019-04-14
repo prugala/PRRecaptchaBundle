@@ -5,5 +5,10 @@ services:
         tags: ['twig.extension']
 
     PR\Bundle\RecaptchaBundle\Validator\Constraints\ContainsRecaptchaValidator:
+        public: true
         arguments:
             $configuration: '%pr_recaptcha%'
+            $requestStack: '@request_stack'
+            $logger: '@logger'
+        tags:
+            - { name: 'validator.constraint_validator', alias: 'pr_recaptcha.valid' }

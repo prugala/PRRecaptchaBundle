@@ -16,7 +16,7 @@ final class RecaptchaType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'label' => 'form.recaptcha.label',
+            'label' => false,
             'mapped' => false,
             'constraints' => [
                 new ContainsRecaptcha()
