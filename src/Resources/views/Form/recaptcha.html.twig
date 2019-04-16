@@ -1,7 +1,3 @@
-{% block recaptcha_label %}
-    <label>{{ label|trans|raw }}</label>
-{% endblock %}
-
 {% block recaptcha_widget %}
     <script src="https://www.google.com/recaptcha/api.js?render={{ getRecaptchaPublicKey() }}"></script>
 
