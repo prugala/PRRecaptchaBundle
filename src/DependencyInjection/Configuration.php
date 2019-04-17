@@ -28,6 +28,9 @@ class Configuration implements ConfigurationInterface
                 ->floatNode('score_threshhold')
                     ->defaultValue(0.5)
                 ->end()
+                ->booleanNode('hide_badge')
+                    ->defaultValue(false)
+                ->end()
             ->end();
 
         return $treeBuilder;

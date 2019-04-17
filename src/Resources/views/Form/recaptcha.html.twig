@@ -1,6 +1,10 @@
 {% block recaptcha_widget %}
     <script src="https://www.google.com/recaptcha/api.js?render={{ getRecaptchaPublicKey() }}"></script>
 
+    {% if isBadgeHidden() %}
+        <link rel="stylesheet" href="{{ asset('/bundles/prrecaptcha/css/recaptcha.css') }}"/>
+    {% endif %}
+
     <script>
         grecaptcha.ready(function () {
             grecaptcha.execute('{{ getRecaptchaPublicKey() }}', { action: 'form' }).then(function (token) {
