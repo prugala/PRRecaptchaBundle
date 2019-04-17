@@ -25,6 +25,7 @@ class RecaptchaExtension extends \Twig_Extension
     {
         return [
             new TwigFunction('getRecaptchaPublicKey', [$this, 'getRecaptchaPublicKey']),
+            new TwigFunction('isBadgeHidden', [$this, 'isBadgeHidden']),
         ];
     }
 
@@ -34,5 +35,13 @@ class RecaptchaExtension extends \Twig_Extension
     public function getRecaptchaPublicKey(): string
     {
         return $this->configuration['public_key'];
+    }
+
+    /**
+     * @return bool
+     */
+    public function isBadgeHidden(): bool
+    {
+        return $this->configuration['hide_badge'];
     }
 }
