@@ -1,0 +1,32 @@
+language: php
+
+sudo: false
+dist: trusty
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 7.2
+      env: SYMFONY=^3
+    - php: 7.2
+      env: SYMFONY=^4
+    - php: 7.3
+      env: SYMFONY=^3
+    - php: 7.3
+      env: SYMFONY=^4
+
+before_script:
+  - |
+    if [ "SYMFONY" != "" ]; then
+      composer require "symfony/form:${SYMFONY}" --no-update
+      composer require "symfony/framework-bundle:${SYMFONY}" --no-update
+      composer require "symfony/validator:${SYMFONY}" --no-update
+    fi
+  - composer install
+
+script:
+  - phpunit

@@ -1,13 +1,13 @@
-{% block recaptcha_widget %}
-    <script src="https://www.google.com/recaptcha/api.js?render={{ getRecaptchaPublicKey() }}"></script>
+{% block pr_recaptcha_widget %}
+    <script src="https://{{ form.vars.pr_recaptcha_host }}/recaptcha/api.js?render={{ form.vars.pr_recaptcha_public_key }}"></script>
 
-    {% if isBadgeHidden() %}
+    {% if form.vars.pr_recaptcha_hide_badge %}
         <link rel="stylesheet" href="{{ asset('/bundles/prrecaptcha/css/recaptcha.css') }}"/>
     {% endif %}
 
     <script>
         grecaptcha.ready(function () {
-            grecaptcha.execute('{{ getRecaptchaPublicKey() }}', { action: 'form' }).then(function (token) {
+            grecaptcha.execute('{{ form.vars.pr_recaptcha_public_key }}', { action: 'form' }).then(function (token) {
                 var recaptchaResponse = document.getElementById('{{ id }}');
                 recaptchaResponse.value = token;
             });

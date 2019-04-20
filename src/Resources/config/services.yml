@@ -1,14 +1,19 @@
 services:
-    PR\Bundle\RecaptchaBundle\Twig\RecaptchaExtension:
+    PR\Bundle\RecaptchaBundle\Form\Type\RecaptchaType:
+        public: true
         arguments:
-            $configuration: '%pr_recaptcha%'
-        tags: ['twig.extension']
+            - '%pr_recaptcha.public_key%'
+            - '%pr_recaptcha.hide_badge%'
+            - '%pr_recaptcha.host%'
+        tags:
+            - { name: form.type }
 
     PR\Bundle\RecaptchaBundle\Validator\Constraints\ContainsRecaptchaValidator:
         public: true
         arguments:
-            $configuration: '%pr_recaptcha%'
-            $requestStack: '@request_stack'
-            $logger: '@logger'
+            - '%pr_recaptcha.secret_key%'
+            - '%pr_recaptcha.score_threshhold%'
+            - '@request_stack'
+            - '@logger'
         tags:
             - { name: 'validator.constraint_validator', alias: 'pr_recaptcha.valid' }
