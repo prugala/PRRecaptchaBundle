@@ -21,7 +21,9 @@ class PRRecaptchaExtension extends Extension
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
 
-        $container->setParameter('pr_recaptcha', $config);
+        foreach ($config as $key => $value) {
+            $container->setParameter('pr_recaptcha.' . $key, $value);
+        }
 
         $this->registerTemplate($container);
     }

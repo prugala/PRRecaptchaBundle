@@ -12,8 +12,11 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 final class ContainsRecaptchaValidator extends ConstraintValidator
 {
-    /** @var array */
-    private $configuration;
+    /** @var string */
+    private $secretKey;
+
+    /** @var float */
+    private $scoreThreshhold;
 
     /** @var RequestStack */
     private $requestStack;
@@ -23,13 +26,15 @@ final class ContainsRecaptchaValidator extends ConstraintValidator
 
     /**
      * ContainsRecaptchaValidator constructor.
-     * @param array $configuration
+     * @param string $secretKey
+     * @param float $scoreThreshhold
      * @param RequestStack $requestStack
      * @param LoggerInterface $logger
      */
-    public function __construct(array $configuration, RequestStack $requestStack, LoggerInterface $logger)
+    public function __construct(string $secretKey, float $scoreThreshhold, RequestStack $requestStack, LoggerInterface $logger)
     {
-        $this->configuration = $configuration;
+        $this->secretKey = $secretKey;
+        $this->scoreThreshhold = $scoreThreshhold;
         $this->requestStack = $requestStack;
         $this->logger = $logger;
     }
@@ -68,11 +73,11 @@ final class ContainsRecaptchaValidator extends ConstraintValidator
         try {
             $remoteIp = $this->requestStack->getCurrentRequest()->getClientIp();
 
-            $recaptcha = new ReCaptcha($this->configuration['secret_key']);
+            $recaptcha = new ReCaptcha($this->secretKey);
 
             $response = $recaptcha
                 ->setExpectedAction('form')
-                ->setScoreThreshold($this->configuration['score_threshhold'])
+                ->setScoreThreshold($this->scoreThreshhold)
                 ->verify($token, $remoteIp);
 
             return $response->isSuccess();

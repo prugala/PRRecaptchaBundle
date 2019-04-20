@@ -31,5 +31,8 @@
     "symfony": {
       "allow-contrib": "true"
     }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8"
   }
 }

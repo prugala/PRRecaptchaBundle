@@ -31,6 +31,9 @@ class Configuration implements ConfigurationInterface
                 ->booleanNode('hide_badge')
                     ->defaultValue(false)
                 ->end()
+                ->scalarNode('host')
+                    ->defaultValue('www.google.com')
+                ->end()
             ->end();
 
         return $treeBuilder;
