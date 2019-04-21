@@ -1,6 +1,10 @@
 # RecaptchaBundle
 Recaptcha v3 bundle for Symfony
 
+[![Latest Stable Version](https://poser.pugx.org/prugala/recaptcha-bundle/v/stable)](https://packagist.org/packages/prugala/recaptcha-bundle)
+[![Total Downloads](https://poser.pugx.org/prugala/recaptcha-bundle/downloads)](https://packagist.org/packages/prugala/recaptcha-bundle)
+[![License](https://poser.pugx.org/prugala/recaptcha-bundle/license)](https://github.com/prugala/PRRecaptchaBundle/blob/master/LICENSE)
+
 [![Build Status](https://travis-ci.org/prugala/PRRecaptchaBundle.svg?branch=master)](https://travis-ci.org/prugala/PRRecaptchaBundle)
 
 #### Instalation
@@ -15,7 +19,8 @@ Register bundle in `AppKernel.php` file:
 pr_recaptcha:
     public_key: 'public key'
     secret_key: 'secret key'
-    score_threshhold: 'score' # optional / default vaule: 0.5
+    enabled: false # optional / default value: true - you can disable it for local or test env
+    score_threshhold: 'score' # optional / default value: 0.5
     hide_badge: true # optional / default value: false *
     host: 'www.google.com' # optional / default value: www.google.com **
 ```

@@ -12,6 +12,9 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 final class ContainsRecaptchaValidator extends ConstraintValidator
 {
+    /** @var bool */
+    private $enabled;
+
     /** @var string */
     private $secretKey;
 
@@ -26,13 +29,20 @@ final class ContainsRecaptchaValidator extends ConstraintValidator
 
     /**
      * ContainsRecaptchaValidator constructor.
+     * @param bool $enabled
      * @param string $secretKey
      * @param float $scoreThreshhold
      * @param RequestStack $requestStack
      * @param LoggerInterface $logger
      */
-    public function __construct(string $secretKey, float $scoreThreshhold, RequestStack $requestStack, LoggerInterface $logger)
-    {
+    public function __construct(
+        bool $enabled,
+        string $secretKey,
+        float $scoreThreshhold,
+        RequestStack $requestStack,
+        LoggerInterface $logger
+    ) {
+        $this->enabled = $enabled;
         $this->secretKey = $secretKey;
         $this->scoreThreshhold = $scoreThreshhold;
         $this->requestStack = $requestStack;
@@ -45,6 +55,10 @@ final class ContainsRecaptchaValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
+        if (!$this->enabled) {
+            return;
+        }
+
         if (!$constraint instanceof ContainsRecaptcha) {
             throw new UnexpectedTypeException($constraint, ContainsRecaptcha::class);
         }
@@ -81,7 +95,7 @@ final class ContainsRecaptchaValidator extends ConstraintValidator
                 ->verify($token, $remoteIp);
 
             return $response->isSuccess();
-        } catch (\Exception $exception) { // Change on custom Exception
+        } catch (\Exception $exception) {
             $this->logger->error(
                 'reCAPTCHA validator error: ' . $exception->getMessage(),
                 [
