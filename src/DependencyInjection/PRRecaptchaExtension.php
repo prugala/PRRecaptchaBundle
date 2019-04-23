@@ -36,7 +36,7 @@ class PRRecaptchaExtension extends Extension
         $formResource = '@PRRecaptcha/Form/recaptcha.html.twig';
 
         $container->setParameter('twig.form.resources', array_merge(
-            $container->getParameter('twig.form.resources') ?? [],
+            $container->getParameter('twig.form.resources') ?? [ ],
             [ $formResource ]
         ));
     }
