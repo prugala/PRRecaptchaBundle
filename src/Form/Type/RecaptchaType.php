@@ -57,7 +57,7 @@ final class RecaptchaType extends AbstractType
             'constraints' => [
                 new ContainsRecaptcha()
             ],
-            'validation_groups' => ['Default']
+            'validation_groups' => [ 'Default' ]
         ]);
     }
 
