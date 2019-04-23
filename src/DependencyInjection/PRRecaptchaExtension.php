@@ -37,7 +37,7 @@ class PRRecaptchaExtension extends Extension
 
         $container->setParameter('twig.form.resources', array_merge(
             $container->getParameter('twig.form.resources') ?? [],
-            [$formResource]
+            [ $formResource ]
         ));
     }
 }

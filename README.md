@@ -1,7 +1,12 @@
 # RecaptchaBundle
 Recaptcha v3 bundle for Symfony
 
-[![Build Status](https://travis-ci.org/prugala/PRRecaptchaBundle.svg?branch=master)](https://travis-ci.org/prugala/PRRecaptchaBundle)
+[![Latest Stable Version](https://poser.pugx.org/prugala/recaptcha-bundle/v/stable)](https://packagist.org/packages/prugala/recaptcha-bundle)
+[![Total Downloads](https://poser.pugx.org/prugala/recaptcha-bundle/downloads)](https://packagist.org/packages/prugala/recaptcha-bundle)
+[![License](https://poser.pugx.org/prugala/recaptcha-bundle/license)](https://github.com/prugala/PRRecaptchaBundle/blob/master/LICENSE)
+
+[![Build Status](https://scrutinizer-ci.com/g/prugala/PRRecaptchaBundle/badges/build.png?b=master)](https://scrutinizer-ci.com/g/prugala/PRRecaptchaBundle/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/prugala/PRRecaptchaBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/prugala/PRRecaptchaBundle/?branch=master)
 
 #### Instalation
 `composer require prugala/recaptcha-bundle`
