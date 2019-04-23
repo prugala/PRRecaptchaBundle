@@ -20,7 +20,8 @@ Register bundle in `AppKernel.php` file:
 pr_recaptcha:
     public_key: 'public key'
     secret_key: 'secret key'
-    score_threshhold: 'score' # optional / default vaule: 0.5
+    enabled: false # optional / default value: true - you can disable it for local or test env
+    score_threshhold: 'score' # optional / default value: 0.5
     hide_badge: true # optional / default value: false *
     host: 'www.google.com' # optional / default value: www.google.com **
 ```
