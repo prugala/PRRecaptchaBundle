@@ -2,7 +2,7 @@
     <script src="https://{{ form.vars.pr_recaptcha_host }}/recaptcha/api.js?render={{ form.vars.pr_recaptcha_public_key }}"></script>
 
     {% if form.vars.pr_recaptcha_hide_badge %}
-        <link rel="stylesheet" href="{{ asset('/bundles/prrecaptcha/css/recaptcha.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('/bundles/prrecaptcha/css/recaptcha.css') }}">
     {% endif %}
 
     <script>
