@@ -7,7 +7,7 @@
 
     <script>
         grecaptcha.ready(function () {
-            grecaptcha.execute('{{ form.vars.pr_recaptcha_public_key }}', { action: 'form' }).then(function (token) {
+            grecaptcha.execute('{{ form.vars.pr_recaptcha_public_key }}', { action: '{{ form.vars.attr.action_name ?? 'form' }}' }).then(function (token) {
                 var recaptchaResponse = document.getElementById('{{ id }}');
                 recaptchaResponse.value = token;
             });

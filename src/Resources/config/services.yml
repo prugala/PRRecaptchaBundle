@@ -12,6 +12,7 @@ services:
         public: true
         arguments:
             - '%pr_recaptcha.enabled%'
+            - '%pr_recaptcha.version%'
             - '%pr_recaptcha.secret_key%'
             - '%pr_recaptcha.score_threshhold%'
             - '@request_stack'

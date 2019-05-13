@@ -15,6 +15,9 @@ final class ContainsRecaptchaValidator extends ConstraintValidator
     /** @var bool */
     private $enabled;
 
+    /** @var int */
+    private $version;
+
     /** @var string */
     private $secretKey;
 
@@ -30,6 +33,7 @@ final class ContainsRecaptchaValidator extends ConstraintValidator
     /**
      * ContainsRecaptchaValidator constructor.
      * @param bool $enabled
+     * @param int $version
      * @param string $secretKey
      * @param float $scoreThreshhold
      * @param RequestStack $requestStack
@@ -37,12 +41,14 @@ final class ContainsRecaptchaValidator extends ConstraintValidator
      */
     public function __construct(
         bool $enabled,
+        int $version,
         string $secretKey,
         float $scoreThreshhold,
         RequestStack $requestStack,
         LoggerInterface $logger
     ) {
         $this->enabled = $enabled;
+        $this->version = $version;
         $this->secretKey = $secretKey;
         $this->scoreThreshhold = $scoreThreshhold;
         $this->requestStack = $requestStack;
@@ -86,13 +92,17 @@ final class ContainsRecaptchaValidator extends ConstraintValidator
     {
         try {
             $remoteIp = $this->requestStack->getCurrentRequest()->getClientIp();
-
             $recaptcha = new ReCaptcha($this->secretKey);
 
-            $response = $recaptcha
-                ->setExpectedAction('form')
-                ->setScoreThreshold($this->scoreThreshhold)
-                ->verify($token, $remoteIp);
+            if ($this->version === 3) {
+                $action = $this->context->getObject()->getConfig()->getAttributes()['data_collector/passed_options']['attr']['action_name'] ?? 'form';
+
+                $recaptcha
+                    ->setExpectedAction($action)
+                    ->setScoreThreshold($this->scoreThreshhold);
+            }
+
+            $response = $recaptcha->verify($token, $remoteIp);
 
             return $response->isSuccess();
         } catch (\Exception $exception) {

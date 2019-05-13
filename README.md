@@ -20,6 +20,7 @@ pr_recaptcha:
     public_key: 'public key'
     secret_key: 'secret key'
     enabled: false # optional / default value: true - you can disable it for local or test env
+    version: 2 # optional / default value 3 - version of reCAPTCHA 
     score_threshhold: 'score' # optional / default value: 0.5
     hide_badge: true # optional / default value: false *
     host: 'www.google.com' # optional / default value: www.google.com **
@@ -36,6 +37,15 @@ Add field with type `RecaptchaType` to your form, example:
 
 `->add('captcha', RecaptchaType::class)`
 
+###### Custom action name
+If you want to use custom action name to analyze data from each form separately, set action name (default name: `form`)
+```
+->add('captcha', RecaptchaType::class, [
+            'attr' => [
+                'action_name' => 'My form'
+            ]
+        ])
+```
+
 #### TODO
-1. Support for version v2
 2. Waiting for suggestions :)

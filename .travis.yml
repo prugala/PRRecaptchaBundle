@@ -10,6 +10,10 @@ cache:
 matrix:
   fast_finish: true
   include:
+    - php: 7.1
+      env: SYMFONY=^3
+    - php: 7.1
+      env: SYMFONY=^4
     - php: 7.2
       env: SYMFONY=^3
     - php: 7.2
