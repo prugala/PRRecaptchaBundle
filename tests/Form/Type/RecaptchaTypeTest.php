@@ -47,9 +47,9 @@ final class RecaptchaTypeTest extends TestCase
 
         $this->formType->buildView($view, $form, []);
 
-        $this->assertContains('publicKey', $view->vars['pr_recaptcha_public_key']);
+        $this->assertEquals('publicKey', $view->vars['pr_recaptcha_public_key']);
         $this->assertTrue($view->vars['pr_recaptcha_hide_badge']);
-        $this->assertContains('www.google.com', $view->vars['pr_recaptcha_host']);
+        $this->assertEquals('www.google.com', $view->vars['pr_recaptcha_host']);
     }
 
     /**
