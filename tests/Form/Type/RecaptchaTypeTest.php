@@ -11,7 +11,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class EWZRecaptchaTypeTest extends TestCase
+final class RecaptchaTypeTest extends TestCase
 {
     /** @var RecaptchaType */
     private $formType;
@@ -47,9 +47,9 @@ final class EWZRecaptchaTypeTest extends TestCase
 
         $this->formType->buildView($view, $form, []);
 
-        $this->assertStringContainsString('publicKey', $view->vars['pr_recaptcha_public_key']);
+        $this->assertContains('publicKey', $view->vars['pr_recaptcha_public_key']);
         $this->assertTrue($view->vars['pr_recaptcha_hide_badge']);
-        $this->assertStringContainsString('www.google.com', $view->vars['pr_recaptcha_host']);
+        $this->assertContains('www.google.com', $view->vars['pr_recaptcha_host']);
     }
 
     /**
