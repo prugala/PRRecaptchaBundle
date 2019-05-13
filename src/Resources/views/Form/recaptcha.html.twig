@@ -1,18 +1,38 @@
 {% block pr_recaptcha_widget %}
-    <script src="https://{{ form.vars.pr_recaptcha_host }}/recaptcha/api.js?render={{ form.vars.pr_recaptcha_public_key }}"></script>
+    {% set options = attr.options %}
 
-    {% if form.vars.pr_recaptcha_hide_badge %}
+    {% if form.vars.pr_recaptcha_version == 2 %}
+        <script src="https://{{ form.vars.pr_recaptcha_host }}/recaptcha/api.js?onload=onloadCallback{{ id }}"
+            {% if options.defer is defined and options.defer %} defer{% endif %}
+            {% if options.async is defined and options.async %} async{% endif %}
+        ></script>
+    {% else %}
+        <script src="https://{{ form.vars.pr_recaptcha_host }}/recaptcha/api.js?render={{ form.vars.pr_recaptcha_public_key }}"></script>
+    {% endif %}
+
+    {% if form.vars.pr_recaptcha_hide_badge and form.vars.pr_recaptcha_version == 3 %}
         <link rel="stylesheet" href="{{ asset('/bundles/prrecaptcha/css/recaptcha.css') }}">
     {% endif %}
 
-    <script>
-        grecaptcha.ready(function () {
-            grecaptcha.execute('{{ form.vars.pr_recaptcha_public_key }}', { action: '{{ form.vars.attr.action_name ?? 'form' }}' }).then(function (token) {
-                var recaptchaResponse = document.getElementById('{{ id }}');
-                recaptchaResponse.value = token;
+    {% if form.vars.pr_recaptcha_version == 2 %}
+        <div id="{{ id }}-recaptcha"></div>
+        <script>
+            var onloadCallback{{ id }} = function() {
+                grecaptcha.render('{{ id }}-recaptcha', {
+                    'sitekey': '{{ form.vars.pr_recaptcha_public_key }}'
+                });
+            };
+        </script>
+    {% else %}
+        <script>
+            grecaptcha.ready(function () {
+                grecaptcha.execute('{{ form.vars.pr_recaptcha_public_key }}', { action: '{{ options.action_name ?? 'form' }}' }).then(function (token) {
+                    var recaptchaResponse = document.getElementById('{{ id }}');
+                    recaptchaResponse.value = token;
+                });
             });
-        });
-    </script>
+        </script>
+    {% endif %}
 
     {{ form_label(form) }}
     {{ form_widget(form) }}

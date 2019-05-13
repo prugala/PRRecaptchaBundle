@@ -12,6 +12,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class RecaptchaType extends AbstractType
 {
+    /** @var int */
+    private $version;
+
     /** @var string */
     private $publicKey;
 
@@ -20,15 +23,21 @@ final class RecaptchaType extends AbstractType
 
     /** @var string */
     private $host;
+
     /**
      * RecaptchaType constructor.
-     *
+     * @param int $version
      * @param string $publicKey
      * @param bool $hideBadge
      * @param string $host
      */
-    public function __construct(string $publicKey, bool $hideBadge, string $host)
-    {
+    public function __construct(
+        int $version,
+        string $publicKey,
+        bool $hideBadge,
+        string $host
+    ) {
+        $this->version = $version;
         $this->publicKey = $publicKey;
         $this->hideBadge = $hideBadge;
         $this->host = $host;
@@ -40,6 +49,7 @@ final class RecaptchaType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars = array_replace($view->vars, [
+            'pr_recaptcha_version' => $this->version,
             'pr_recaptcha_public_key' => $this->publicKey,
             'pr_recaptcha_hide_badge' => $this->hideBadge,
             'pr_recaptcha_host' => $this->host

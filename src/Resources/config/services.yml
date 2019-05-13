@@ -2,6 +2,7 @@ services:
     PR\Bundle\RecaptchaBundle\Form\Type\RecaptchaType:
         public: true
         arguments:
+            - '%pr_recaptcha.version%'
             - '%pr_recaptcha.public_key%'
             - '%pr_recaptcha.hide_badge%'
             - '%pr_recaptcha.host%'

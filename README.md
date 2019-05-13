@@ -37,12 +37,14 @@ Add field with type `RecaptchaType` to your form, example:
 
 `->add('captcha', RecaptchaType::class)`
 
-###### Custom action name
+##### Custom action name
 If you want to use custom action name to analyze data from each form separately, set action name (default name: `form`)
 ```
 ->add('captcha', RecaptchaType::class, [
             'attr' => [
-                'action_name' => 'My form'
+                'options' => [
+                    'action_name' => 'My form'
+                ]
             ]
         ])
 ```

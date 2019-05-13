@@ -18,7 +18,7 @@ final class RecaptchaTypeTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->formType = new RecaptchaType('publicKey', true, 'www.google.com');
+        $this->formType = new RecaptchaType(3,'publicKey', true, 'www.google.com');
     }
 
     /**
