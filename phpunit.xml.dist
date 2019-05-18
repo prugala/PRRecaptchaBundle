@@ -6,7 +6,7 @@
          colors="true">
 
     <testsuites>
-        <testsuite name="EWZRecaptchaBundle">
+        <testsuite name="PRRecaptchaBundle">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
@@ -16,5 +16,4 @@
             <directory suffix=".php">src</directory>
         </whitelist>
     </filter>
-
 </phpunit>
