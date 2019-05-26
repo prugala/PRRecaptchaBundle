@@ -6,11 +6,15 @@
     {% endif %}
 
     <script>
-        grecaptcha.ready(function () {
+        function executePrRecaptcha(widget) {
             grecaptcha.execute('{{ form.vars.pr_recaptcha_public_key }}', { action: 'form' }).then(function (token) {
-                var recaptchaResponse = document.getElementById('{{ id }}');
+                var recaptchaResponse = document.getElementById(widget);
                 recaptchaResponse.value = token;
             });
+        }
+
+        grecaptcha.ready(function () {
+            executePrRecaptcha('{{ id }}');
         });
     </script>
 
