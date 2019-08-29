@@ -36,6 +36,16 @@ Add field with type `RecaptchaType` to your form, example:
 
 `->add('captcha', RecaptchaType::class)`
 
+Options available : 
+
+``` 
+->add('captcha', RecaptchaType::class, [
+	 'script_nonce_csp' => $nonce
+])
+```
+
+- script_nonce_csp : Nonce for Content-Security-Policy header
+
 #### TODO
 1. Support for version v2
 2. Waiting for suggestions :)

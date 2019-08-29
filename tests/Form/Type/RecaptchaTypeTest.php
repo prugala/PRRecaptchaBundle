@@ -67,7 +67,8 @@ final class RecaptchaTypeTest extends TestCase
             'constraints' => [
                 new ContainsRecaptcha()
             ],
-            'validation_groups' => ['Default']
+            'validation_groups' => ['Default'],
+            'script_nonce_csp' => ''
         ];
 
         $this->assertEquals($expected, $options);
