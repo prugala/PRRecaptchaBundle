@@ -63,10 +63,6 @@ final class ContainsRecaptchaValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, ContainsRecaptcha::class);
         }
 
-        if (null === $value || '' === $value) {
-            return;
-        }
-
         if (!is_string($value)) {
             throw new UnexpectedTypeException($value, 'string');
         }
