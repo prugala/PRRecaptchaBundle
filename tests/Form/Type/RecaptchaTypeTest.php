@@ -68,7 +68,8 @@ final class RecaptchaTypeTest extends TestCase
                 new ContainsRecaptcha()
             ],
             'validation_groups' => ['Default'],
-            'script_nonce_csp' => ''
+            'script_nonce_csp' => '',
+            'action_name' => 'form',
         ];
 
         $this->assertEquals($expected, $options);

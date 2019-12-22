@@ -7,7 +7,7 @@
 
     <script {% if form.vars.script_nonce_csp is defined %}nonce="{{ form.vars.script_nonce_csp }}"{% endif %}>
         grecaptcha.ready(function () {
-            grecaptcha.execute('{{ form.vars.pr_recaptcha_public_key }}', { action: 'form' }).then(function (token) {
+            grecaptcha.execute('{{ form.vars.pr_recaptcha_public_key }}', { action: {{ form.vars.action_name|default('form') }} }).then(function (token) {
                 var recaptchaResponse = document.getElementById('{{ id }}');
                 recaptchaResponse.value = token;
             });

@@ -7,7 +7,7 @@ Recaptcha v3 bundle for Symfony
 
 [![Build Status](https://travis-ci.org/prugala/PRRecaptchaBundle.svg?branch=master)](https://travis-ci.org/prugala/PRRecaptchaBundle)
 
-#### Instalation
+#### Installation
 `composer require prugala/recaptcha-bundle`
 
 Register bundle in `AppKernel.php` file:
@@ -15,7 +15,7 @@ Register bundle in `AppKernel.php` file:
 ```new PR\Bundle\RecaptchaBundle\PRRecaptchaBundle()```
 
 #### Configuration
-```
+``` yaml
 pr_recaptcha:
     public_key: 'public key'
     secret_key: 'secret key'
@@ -36,15 +36,17 @@ Add field with type `RecaptchaType` to your form, example:
 
 `->add('captcha', RecaptchaType::class)`
 
-Options available : 
+Options available: 
 
-``` 
+``` php
 ->add('captcha', RecaptchaType::class, [
-	 'script_nonce_csp' => $nonce
+    'script_nonce_csp' => $nonce,
+    'action_name' => 'contact_form'
 ])
 ```
 
-- script_nonce_csp : Nonce for Content-Security-Policy header
+- script_nonce_csp: Nonce for Content-Security-Policy header
+- action_name: Form specific action name
 
 #### TODO
 1. Support for version v2

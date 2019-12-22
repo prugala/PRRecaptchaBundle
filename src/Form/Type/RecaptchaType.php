@@ -59,10 +59,12 @@ final class RecaptchaType extends AbstractType
                 new ContainsRecaptcha()
             ],
             'validation_groups' => [ 'Default' ],
-            'script_nonce_csp' => ''
+            'script_nonce_csp' => '',
+            'action_name' => 'form',
         ]);
 
         $resolver->setAllowedTypes('script_nonce_csp', 'string');
+        $resolver->setAllowedTypes('action_name', 'string');
     }
 
     /**
