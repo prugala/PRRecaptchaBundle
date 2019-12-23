@@ -43,7 +43,8 @@ final class RecaptchaType extends AbstractType
             'pr_recaptcha_public_key' => $this->publicKey,
             'pr_recaptcha_hide_badge' => $this->hideBadge,
             'pr_recaptcha_host' => $this->host,
-            'script_nonce_csp' => $options['script_nonce_csp'] ?? ''
+            'script_nonce_csp' => $options['script_nonce_csp'] ?? '',
+            'action_name' => $options['action_name'] ?? '',
         ]);
     }
 
