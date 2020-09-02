@@ -30,6 +30,12 @@ https://developers.google.com/recaptcha/docs/faq#hiding-badge
 `**` If you plan to use reCAPTCHA globally please use host `www.recaptcha.net`. 
 More informations:
 https://developers.google.com/recaptcha/docs/faq#can-i-use-recaptcha-globally
+
+In Symfony 4.4 and newer you need to register form theme by yourself by adding in `config/packages.twig.yaml`
+``` yaml
+twig:
+    form_themes: ['@PRRecaptcha/Form/recaptcha.html.twig']
+```
         
 #### How to use
 Add field with type `RecaptchaType` to your form, example:
