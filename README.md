@@ -1,3 +1,8 @@
+# ARCHIVED
+This repository is archived and not maintained. 
+
+Please use: https://github.com/excelwebzone/EWZRecaptchaBundle
+
 # RecaptchaBundle
 Recaptcha v3 bundle for Symfony
 
